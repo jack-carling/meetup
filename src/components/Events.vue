@@ -10,7 +10,7 @@
         <span><i class="material-icons">place</i>{{ event.location }}</span>
         <span><i class="material-icons">place</i>{{ event.street }}</span>
         <button v-if="!attending.includes(index)" @click="$emit('attend', index)">Join</button>
-        <button v-else class="cancel">Cancel</button>
+        <button v-else class="cancel" @click="$emit('cancel', index)">Cancel</button>
       </div>
     </article>
   </section>
