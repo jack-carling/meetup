@@ -12,7 +12,7 @@ describe('Events.vue', () => {
       },
     });
   });
-  it('Renders article tags for each event', () => {
+  it('renders article tags for each event', () => {
     const events = wrapper.findAll('article.event').length;
     expect(events).toEqual(12);
   });

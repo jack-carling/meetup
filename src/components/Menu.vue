@@ -3,18 +3,20 @@
     <h1>Meetup</h1>
     <div>
       <button>My events</button>
+      <span><i class="material-icons">calendar_today</i>{{ attending.length }}</span>
     </div>
   </section>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    attending: Array,
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-$background: #fefefe;
-$blue: #1a659e;
-
 section {
   width: 100vw;
   height: 85px;
@@ -34,14 +36,18 @@ h1 {
   font-size: 2.5rem;
   color: $blue;
 }
-div.counter {
-  background-color: $background;
-  border-radius: 50%;
-  margin-left: 0.5rem;
-  color: #575757;
-  width: 30px;
-  height: 30px;
-  display: grid;
-  place-items: center;
+div {
+  display: flex;
+  align-items: center;
+  span {
+    color: $blue;
+    font-weight: 700;
+    display: flex;
+    margin-right: 1rem;
+    margin-left: 2rem;
+    i {
+      margin-right: 0.5rem;
+    }
+  }
 }
 </style>

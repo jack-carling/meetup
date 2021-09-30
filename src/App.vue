@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Menu />
+    <Menu :attending="attending" />
     <Greeting />
     <Events :events="events" :attending="attending" @attend="handleAttending" @cancel="handleCancel" />
   </div>
@@ -49,10 +49,6 @@ export default {
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Open+Sans:wght@400;700&display=swap');
-
-$blue: #1a659e;
-$background: #fefefe;
-$white: #eee;
 
 * {
   box-sizing: border-box;

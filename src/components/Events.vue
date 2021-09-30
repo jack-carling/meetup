@@ -38,9 +38,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$white: #eee;
-$gray: #575757;
-
 section {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -57,7 +54,7 @@ div.calender {
   flex-direction: column;
   padding: 2rem;
   span.month {
-    background-color: #d8534e;
+    background-color: $red;
     border-radius: 0.5rem 0.5rem 0 0;
     padding: 0.1rem 0;
     color: $white;
