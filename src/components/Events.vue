@@ -1,5 +1,11 @@
 <template>
-  <section>
+  <section v-if="!events.length" class="error">
+    <span>
+      <i class="material-icons">error</i>
+      No events found, please try another date.
+    </span>
+  </section>
+  <section v-else class="events">
     <article class="event" v-for="(event, index) in events" :key="index">
       <div class="calender">
         <span class="month">{{ formatMonth(event.date) }}</span>
@@ -38,7 +44,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-section {
+section.error {
+  padding: 1rem;
+  span {
+    border: 1px solid $white;
+    display: block;
+    padding: 3rem;
+    text-align: center;
+    i {
+      display: block;
+      margin-bottom: 1rem;
+      color: $gray;
+    }
+  }
+}
+section.events {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
@@ -94,7 +114,7 @@ div.info {
 }
 
 @media screen and (max-width: 800px) {
-  section {
+  section.events {
     grid-template-columns: repeat(1, 1fr);
   }
 }

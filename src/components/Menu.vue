@@ -2,8 +2,12 @@
   <section>
     <h1>Meetup</h1>
     <div>
-      <button>My events</button>
-      <span><i class="material-icons">calendar_today</i>{{ attending.length }}</span>
+      <span id="home" @click="$emit('view', 'default')"><i class="material-icons">home</i></span>
+      <button @click="$emit('view', 'default')">Home</button>
+      <button @click="$emit('view', 'profile')">My events</button>
+      <span id="events" @click="$emit('view', 'profile')">
+        <i class="material-icons">calendar_today</i>{{ attending.length }}
+      </span>
     </div>
   </section>
 </template>
@@ -39,15 +43,33 @@ h1 {
 div {
   display: flex;
   align-items: center;
+  button {
+    margin-right: 1rem;
+  }
+  span#home {
+    display: none;
+    i {
+      font-size: 30px;
+    }
+  }
   span {
+    cursor: pointer;
     color: $blue;
     font-weight: 700;
     display: flex;
-    margin-right: 1rem;
-    margin-left: 2rem;
+    align-items: center;
+    margin: 0 1rem;
     i {
       margin-right: 0.5rem;
     }
+  }
+}
+@media screen and (max-width: 500px) {
+  span {
+    display: flex !important;
+  }
+  button {
+    display: none;
   }
 }
 </style>
