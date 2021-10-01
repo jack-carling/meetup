@@ -60,6 +60,7 @@ export default {
     },
     changeView(view) {
       this.view = view;
+      this.handleFilter('all');
     },
     handleFilter(type) {
       switch (type) {
