@@ -19,7 +19,7 @@ describe('Events.vue', () => {
   it('should emit an event when the join button is clicked', async () => {
     const button = wrapper.find('button');
     await button.trigger('click');
-    expect(wrapper.emitted().attend).toBeTruthy();
+    expect(wrapper.emitted('attend')).toBeTruthy();
   });
   it('should show cancel on the button if already attending', async () => {
     await wrapper.setProps({ attending: [0] });

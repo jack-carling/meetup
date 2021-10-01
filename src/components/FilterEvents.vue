@@ -79,7 +79,4 @@ span#header {
   padding: 0 0.5rem;
   color: $gray;
 }
-button.highlight {
-  background-color: $dark-blue;
-}
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Menu :attending="attending" @view="changeView" />
+    <Menu :attending="attending" :view="view" @view="changeView" />
     <template v-if="view === 'default'">
       <Greeting />
       <FilterEvents :count="eventsCount" @filter-events="handleFilter" />
@@ -35,6 +35,7 @@ export default {
       events: [],
       attending: [],
       eventsFilter: [],
+      eventsAttending: [],
       view: 'default',
     };
   },
@@ -92,6 +93,7 @@ export default {
   watch: {
     attending() {
       localStorage.attending = JSON.stringify(this.attending);
+      this.eventsAttending = this.events.filter((event, index) => this.attending.includes(index));
     },
   },
 };
@@ -131,6 +133,9 @@ button {
     margin-left: 0.2rem;
     opacity: 0.1;
   }
+}
+button.highlight {
+  background-color: $dark-blue;
 }
 button:hover {
   opacity: 0.75;

@@ -1,10 +1,10 @@
 <template>
   <section>
-    <h1>Meetup</h1>
+    <h1 @click="$emit('view', 'default')">Meetup</h1>
     <div>
       <span id="home" @click="$emit('view', 'default')"><i class="material-icons">home</i></span>
-      <button @click="$emit('view', 'default')">Home</button>
-      <button @click="$emit('view', 'profile')">My events</button>
+      <button :class="{ highlight: view === 'default' }" @click="$emit('view', 'default')">Home</button>
+      <button :class="{ highlight: view === 'profile' }" @click="$emit('view', 'profile')">My events</button>
       <span id="events" @click="$emit('view', 'profile')">
         <i class="material-icons">calendar_today</i>{{ attending.length }}
       </span>
@@ -16,6 +16,7 @@
 export default {
   props: {
     attending: Array,
+    view: String,
   },
 };
 </script>
@@ -35,6 +36,7 @@ section {
   justify-content: space-between;
 }
 h1 {
+  cursor: pointer;
   font-family: 'Lobster', cursive;
   margin: 0;
   font-size: 2.5rem;

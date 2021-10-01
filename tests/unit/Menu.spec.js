@@ -7,6 +7,7 @@ describe('Menu.vue', () => {
     wrapper = shallowMount(Menu, {
       propsData: {
         attending: [],
+        view: 'default',
       },
     });
   });
@@ -22,5 +23,9 @@ describe('Menu.vue', () => {
     await wrapper.setProps({ attending: [0, 2, 5] });
     const number = wrapper.find('span#events').text();
     expect(number).toContain('3');
+  });
+  test('if the home button contains the class "highlight" on render', () => {
+    const button = wrapper.find('button').classes('highlight');
+    expect(button).toBeTruthy();
   });
 });
