@@ -7,7 +7,7 @@
       <Events :events="eventsFilter" :attending="attending" @attend="handleAttending" @cancel="handleCancel" />
     </template>
     <template v-else>
-      <Profile />
+      <Profile :events="eventsAttending" @cancel="handleCancel" @view="changeView" />
     </template>
   </div>
 </template>
@@ -93,7 +93,12 @@ export default {
   watch: {
     attending() {
       localStorage.attending = JSON.stringify(this.attending);
-      this.eventsAttending = this.events.filter((event, index) => this.attending.includes(index));
+      this.eventsAttending = [];
+      this.events.forEach((event, index) => {
+        if (this.attending.includes(index)) {
+          this.eventsAttending.push({ ...event, index });
+        }
+      });
     },
   },
 };
