@@ -32,8 +32,9 @@ export default {
   },
   methods: {
     formatMonth(date) {
-      const month = date.split('/')[1];
-      return format(new Date(month), 'MMM').toUpperCase() + '.';
+      const year = Number(date.split('/')[2]);
+      const month = Number(date.split('/')[1]) - 1;
+      return format(new Date(year, month), 'MMM').toUpperCase() + '.';
     },
     formatDay(date) {
       const day = date.split('/')[0];
