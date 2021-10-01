@@ -1,4 +1,4 @@
-import { add, format } from 'date-fns';
+import { add, format, sub } from 'date-fns';
 
 export function generateEvents() {
   const events = [
@@ -90,6 +90,40 @@ export function generateEvents() {
   return events;
 }
 
+export function generatePastEvents() {
+  const events = [
+    {
+      date: getPastDate(2),
+      location: 'Concert Hall',
+      name: 'Orchestra',
+      rating: [5, 4, 5, 4, 4],
+      street: '4742 Melody Lane',
+      time: '7:30 PM',
+    },
+    {
+      date: getPastDate(9),
+      location: 'Language Café',
+      name: 'French language group',
+      rating: [5, 4, 5, 2, 3, 5, 3],
+      street: '2429 Ryder Avenue',
+      time: '3:00 PM',
+    },
+    {
+      date: getPastDate(16),
+      location: 'Starbucks',
+      name: 'Code & Coffee',
+      rating: [1, 3, 5, 5, 2, 5],
+      street: '291 Quincy Street',
+      time: '5:30 PM',
+    },
+  ];
+  return events;
+}
+
 function getFutureDate(days) {
   return format(add(new Date(), { days }), 'dd/MM/yyyy');
+}
+
+function getPastDate(days) {
+  return format(sub(new Date(), { days }), 'dd/MM/yyyy');
 }

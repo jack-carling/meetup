@@ -22,7 +22,7 @@ export default {
   },
   data() {
     return {
-      date: format(add(new Date(), { days: 1 }), 'yyyy-MM-dd'),
+      date: this.initDate(),
       current: 'Show all',
     };
   },
@@ -32,6 +32,9 @@ export default {
     },
   },
   methods: {
+    initDate() {
+      return format(add(new Date(), { days: 1 }), 'yyyy-MM-dd');
+    },
     changeCurrent(value) {
       this.current = value;
       switch (value) {
@@ -48,6 +51,7 @@ export default {
           this.$emit('filter-events', 'week');
           break;
         default: {
+          if (!this.date) this.date = this.initDate();
           const date = format(new Date(this.date), 'dd/MM/yyyy');
           this.$emit('filter-events', date);
           break;
