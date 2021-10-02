@@ -93,6 +93,13 @@ export function generateEvents() {
 export function generateHistory() {
   const events = [
     {
+      comments: [
+        {
+          comment: 'Amazing performance!',
+          name: 'John',
+          time: getPastDate(1) + ' @ 4:39 PM',
+        },
+      ],
       date: getPastDate(2),
       location: 'Concert Hall',
       name: 'Orchestra',
@@ -101,6 +108,18 @@ export function generateHistory() {
       time: '7:30 PM',
     },
     {
+      comments: [
+        {
+          comment: 'Been learning so much! See you next week.',
+          name: 'James',
+          time: getPastDate(6) + ' @ 11:48 AM',
+        },
+        {
+          comment: 'I did not enjoy it, too crowded!',
+          name: 'Alice',
+          time: getPastDate(7) + ' @ 3:14 PM',
+        },
+      ],
       date: getPastDate(9),
       location: 'Language Café',
       name: 'French language group',
@@ -109,6 +128,18 @@ export function generateHistory() {
       time: '3:00 PM',
     },
     {
+      comments: [
+        {
+          comment: 'Brilliant! Would suggest another location though, it gets busy...',
+          name: 'Sara',
+          time: getPastDate(10) + ' @ 8:59 PM',
+        },
+        {
+          comment: 'Shout out to Mark for helping me so much!',
+          name: 'Martin',
+          time: getPastDate(14) + ' @ 9:05 AM',
+        },
+      ],
       date: getPastDate(16),
       location: 'Starbucks',
       name: 'Code & Coffee',

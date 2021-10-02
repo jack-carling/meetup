@@ -27,6 +27,7 @@
         <Rating :rating="event.rating" @vote="handleRating($event, index)" />
         <span>{{ event.name }}</span>
         <span>{{ event.location }} • {{ event.street }}</span>
+        <Comments :comments="event.comments" @comment="handleComment($event, index)" />
       </li>
     </ul>
   </section>
@@ -34,12 +35,15 @@
 
 <script>
 import Rating from './Rating.vue';
+import Comments from './Comments.vue';
 
 import { generateHistory } from '../utils/events';
+import { format } from 'date-fns';
 
 export default {
   components: {
     Rating,
+    Comments,
   },
   props: {
     events: Array,
@@ -68,6 +72,18 @@ export default {
 
       this.history[index].rating.vote = payload;
 
+      this.save();
+    },
+    handleComment(payload, index) {
+      const currentTime = format(new Date(), 'dd/MM/yyyy @ h:mm a');
+      this.history[index].comments.unshift({
+        comment: payload,
+        name: 'You',
+        time: currentTime,
+      });
+      this.save();
+    },
+    save() {
       localStorage.history = JSON.stringify(this.history);
     },
   },
