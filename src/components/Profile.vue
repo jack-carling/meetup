@@ -10,7 +10,7 @@
         <i class="material-icons">event_note</i>
         <span>No events planned... <a @click="$emit('view', 'default')">Find something to do!</a></span>
       </li>
-      <li v-for="event in events" :key="event.index" class="attending">
+      <li v-for="event in events" :key="event.index" class="events">
         <span class="bold">{{ event.date }} @ {{ event.time }}</span>
         <span>{{ event.name }}</span>
         <span>{{ event.location }} • {{ event.street }}</span>
@@ -22,12 +22,9 @@
     </div>
     <ul>
       <span class="header">Past events attended</span>
-      <li v-for="(event, index) in oldEvents" :key="index" class="old">
-        <span class="bold old">{{ event.date }} @ {{ event.time }}</span>
-        <Rating :rating="calculateRating(event.rating)" />
-        <span class="rating">
-          Rating: {{ calculateRating(event.rating).toFixed(1) }} ( {{ votes(event.rating.length) }} )
-        </span>
+      <li v-for="(event, index) in history" :key="index" class="history">
+        <span class="bold history">{{ event.date }} @ {{ event.time }}</span>
+        <Rating :rating="event.rating" @vote="handleRating($event, index)" />
         <span>{{ event.name }}</span>
         <span>{{ event.location }} • {{ event.street }}</span>
       </li>
@@ -38,7 +35,7 @@
 <script>
 import Rating from './Rating.vue';
 
-import { generatePastEvents } from '../utils/events';
+import { generateHistory } from '../utils/events';
 
 export default {
   components: {
@@ -49,27 +46,29 @@ export default {
   },
   data() {
     return {
-      oldEvents: [],
+      history: [],
     };
   },
   mounted() {
-    this.oldEvents = generatePastEvents();
+    if (localStorage.history) {
+      this.history = JSON.parse(localStorage.history);
+    } else {
+      this.history = generateHistory();
+    }
   },
   methods: {
     handleCancel(index) {
       this.$emit('cancel', index);
     },
-    calculateRating(ratings) {
-      if (!ratings.length) return 0;
-      let total = 0;
-      for (let rating of ratings) {
-        total += rating;
-      }
-      return total / ratings.length;
-    },
-    votes(count) {
-      const text = count === 1 ? 'vote' : 'votes';
-      return `${count} ${text}`;
+    handleRating(payload, index) {
+      if (this.history[index].rating.vote) return;
+
+      if (payload === 'thumb_up') this.history[index].rating.like++;
+      if (payload === 'thumb_down') this.history[index].rating.dislike++;
+
+      this.history[index].rating.vote = payload;
+
+      localStorage.history = JSON.stringify(this.history);
     },
   },
 };
@@ -104,7 +103,7 @@ ul {
 li {
   display: flex;
   flex-direction: column;
-  padding: 1rem 0 1rem 1rem;
+  padding: 1rem;
   position: relative;
   i.cancel {
     cursor: pointer;
@@ -160,11 +159,7 @@ span.bold {
   font-weight: 700;
   color: $gray;
 }
-span.bold.old {
+span.bold.history {
   margin-bottom: 0.5rem;
-}
-span.rating {
-  margin-bottom: 0.5rem;
-  font-size: 0.7rem;
 }
 </style>

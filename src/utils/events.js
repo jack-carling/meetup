@@ -90,13 +90,13 @@ export function generateEvents() {
   return events;
 }
 
-export function generatePastEvents() {
+export function generateHistory() {
   const events = [
     {
       date: getPastDate(2),
       location: 'Concert Hall',
       name: 'Orchestra',
-      rating: [5, 4, 5, 4, 4],
+      rating: { like: 5, dislike: 1, vote: null },
       street: '4742 Melody Lane',
       time: '7:30 PM',
     },
@@ -104,7 +104,7 @@ export function generatePastEvents() {
       date: getPastDate(9),
       location: 'Language Café',
       name: 'French language group',
-      rating: [5, 4, 5, 2, 3, 5, 3],
+      rating: { like: 7, dislike: 3, vote: null },
       street: '2429 Ryder Avenue',
       time: '3:00 PM',
     },
@@ -112,7 +112,7 @@ export function generatePastEvents() {
       date: getPastDate(16),
       location: 'Starbucks',
       name: 'Code & Coffee',
-      rating: [1, 3, 5, 5, 2, 5],
+      rating: { like: 3, dislike: 1, vote: null },
       street: '291 Quincy Street',
       time: '5:30 PM',
     },

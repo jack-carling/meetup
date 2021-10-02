@@ -1,117 +1,94 @@
 <template>
-  <div class="rating">
-    <div
-      class="star"
-      ref="star1"
-      @mouseover="highlightStars(1)"
-      @mouseleave="undoHighlight"
-      :style="{ background: getStarValue(1) }"
-    >
-      <i class="material-icons">star</i>
+  <div>
+    <div class="rating">
+      <div class="bar">
+        <div class="enhance"></div>
+        <div class="green" :style="{ width: percentage }"></div>
+      </div>
+      <div class="vote" @click="$emit('vote', 'thumb_up')">
+        <i class="material-icons" :class="{ green: rating.vote === 'thumb_up' }">thumb_up</i>
+      </div>
+      <div class="vote" @click="$emit('vote', 'thumb_down')">
+        <i class="material-icons" :class="{ red: rating.vote === 'thumb_down' }">thumb_down</i>
+      </div>
     </div>
-    <div
-      class="star"
-      ref="star2"
-      @mouseover="highlightStars(2)"
-      @mouseleave="undoHighlight"
-      :style="{ background: getStarValue(2) }"
-    >
-      <i class="material-icons">star</i>
-    </div>
-    <div
-      class="star"
-      ref="star3"
-      @mouseover="highlightStars(3)"
-      @mouseleave="undoHighlight"
-      :style="{ background: getStarValue(3) }"
-    >
-      <i class="material-icons">star</i>
-    </div>
-    <div
-      class="star"
-      ref="star4"
-      @mouseover="highlightStars(4)"
-      @mouseleave="undoHighlight"
-      :style="{ background: getStarValue(4) }"
-    >
-      <i class="material-icons">star</i>
-    </div>
-    <div
-      class="star"
-      ref="star5"
-      @mouseover="highlightStars(5)"
-      @mouseleave="undoHighlight"
-      :style="{ background: getStarValue(5) }"
-    >
-      <i class="material-icons">star</i>
-    </div>
+    <span class="rating">{{ likes }} out of {{ total }} people liked this event</span>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    rating: Number,
+    rating: Object,
   },
-  methods: {
-    getStarValue(star) {
-      const orange = '#ffa500';
-      const gray = '#575757';
-
-      let percentage = 0;
-      if (this.rating >= star) percentage = 100;
-      if (Math.floor(this.rating) === star - 1) {
-        percentage = Math.round((this.rating % 1) * 100);
-      }
-
-      if (percentage === 100) {
-        return orange;
-      } else if (percentage === 0) {
-        return gray;
-      }
-
-      return `linear-gradient(90deg, ${orange} ${percentage}%, ${gray} ${percentage}%)`;
+  computed: {
+    likes() {
+      return this.rating.like;
     },
-    highlightStars(stars) {
-      for (let i = 1; i <= 5; i++) {
-        if (stars >= i) {
-          this.$refs['star' + i].classList.add('orange');
-          this.$refs['star' + i].classList.remove('gray');
-        } else {
-          this.$refs['star' + i].classList.add('gray');
-        }
-      }
+    total() {
+      return this.rating.like + this.rating.dislike;
     },
-    undoHighlight() {
-      for (let i = 1; i <= 5; i++) {
-        this.$refs['star' + i].classList.remove('orange');
-        this.$refs['star' + i].classList.remove('gray');
-      }
+    percentage() {
+      return Math.round((this.likes / this.total) * 100) + '%';
     },
   },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 div.rating {
   display: flex;
-  div.star {
+  align-items: center;
+  height: 30px;
+  div.vote {
     cursor: pointer;
-    background-clip: text !important;
-    -webkit-background-clip: text !important;
+    height: 100%;
+    width: 30px;
+    border: 1px solid $white;
+    display: grid;
+    place-items: center;
+    margin-left: 0.5rem;
+    flex-shrink: 0;
+  }
+  div.vote:hover {
     i {
-      color: transparent;
+      opacity: 0.75;
     }
   }
-  div.orange {
-    i {
-      color: $orange;
-    }
+  i {
+    color: $gray;
+    font-size: 20px;
   }
-  div.gray {
-    i {
-      color: $gray;
-    }
+  i.green {
+    color: $green;
   }
+  i.red {
+    color: $red;
+  }
+}
+div.bar {
+  width: 300px;
+  height: 100%;
+  background-color: $red;
+  border: 1px solid $white;
+  position: relative;
+  div.enhance {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: rgba($color: $white, $alpha: 0.2);
+  }
+  div.green {
+    background-color: $green;
+    height: 100%;
+    transition: width 0.3s linear;
+  }
+}
+span.rating {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.7rem;
 }
 </style>

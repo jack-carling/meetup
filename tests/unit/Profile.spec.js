@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import { generatePastEvents } from '@/utils/events';
+import { generateHistory } from '@/utils/events';
 import Profile from '@/components/Profile.vue';
 
 describe('Profile.vue', () => {
@@ -33,12 +33,12 @@ describe('Profile.vue', () => {
             index: 4,
           },
         ],
-        oldEvents: generatePastEvents(),
+        history: generateHistory(),
       },
     });
   });
   it('renders the correct amount of li-tags for events attending', () => {
-    const list = wrapper.findAll('li.attending').length;
+    const list = wrapper.findAll('li.events').length;
     expect(list).toEqual(3);
   });
   it('should show informative text if no events are being attended', async () => {
@@ -53,11 +53,7 @@ describe('Profile.vue', () => {
     expect(wrapper.emitted('cancel')).toBeTruthy();
   });
   it('renders the correct amount of li-tags for events attended in the past', () => {
-    const list = wrapper.findAll('li.old').length;
+    const list = wrapper.findAll('li.history').length;
     expect(list).toEqual(3);
-  });
-  it('should show a star rating of 4.4 with 5 votes on the last attended event', () => {
-    const text = wrapper.find('span.rating').text();
-    expect(text).toContain('4.4 ( 5 votes )');
   });
 });
