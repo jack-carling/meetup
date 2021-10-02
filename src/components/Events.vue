@@ -6,7 +6,7 @@
     </span>
   </section>
   <section v-else class="events">
-    <article class="event" v-for="(event, index) in events" :key="index">
+    <article class="event" v-for="event in events" :key="event.id">
       <div class="calender">
         <span class="month">{{ formatMonth(event.date) }}</span>
         <span class="day">{{ formatDay(event.date) }}</span>
@@ -15,8 +15,8 @@
         <span><i class="material-icons">event</i>{{ event.name }} @ {{ event.time }}</span>
         <span><i class="material-icons">place</i>{{ event.location }}</span>
         <span><i class="material-icons">place</i>{{ event.street }}</span>
-        <button v-if="!attending.includes(index)" @click="$emit('attend', index)">Join</button>
-        <button v-else class="cancel" @click="$emit('cancel', index)">Cancel</button>
+        <button v-if="!attending.includes(event.id)" @click="$emit('attend', event.id)">Join</button>
+        <button v-else class="cancel" @click="$emit('cancel', event.id)">Cancel</button>
       </div>
     </article>
   </section>

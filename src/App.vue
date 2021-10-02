@@ -51,11 +51,11 @@ export default {
     this.eventsFilter = [...this.events];
   },
   methods: {
-    handleAttending(index) {
-      this.attending.push(index);
+    handleAttending(id) {
+      this.attending.push(id);
     },
-    handleCancel(index) {
-      const remove = this.attending.indexOf(index);
+    handleCancel(id) {
+      const remove = this.attending.indexOf(id);
       this.attending.splice(remove, 1);
     },
     changeView(view) {

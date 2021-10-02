@@ -4,6 +4,7 @@ export function generateEvents() {
   const events = [
     {
       date: getFutureDate(1),
+      id: 0,
       location: 'Yoga Centrum',
       name: 'Free Yoga Class',
       street: '2524 Libby Street',
@@ -11,6 +12,7 @@ export function generateEvents() {
     },
     {
       date: getFutureDate(1),
+      id: 1,
       location: 'Burlington Carpenters',
       name: 'Wood Workshop',
       street: '876 Ryder Avenue',
@@ -18,6 +20,7 @@ export function generateEvents() {
     },
     {
       date: getFutureDate(2),
+      id: 2,
       location: 'Green Park',
       name: 'Coffee walk',
       street: '1100 Green Park',
@@ -25,6 +28,7 @@ export function generateEvents() {
     },
     {
       date: getFutureDate(2),
+      id: 3,
       location: 'Arch Cinema',
       name: 'Movies',
       street: '331 Star Route',
@@ -32,6 +36,7 @@ export function generateEvents() {
     },
     {
       date: getFutureDate(2),
+      id: 4,
       location: 'Language Café',
       name: 'French language group',
       street: '2429 Ryder Avenue',
@@ -39,6 +44,7 @@ export function generateEvents() {
     },
     {
       date: getFutureDate(3),
+      id: 5,
       location: 'Language Café',
       name: 'Spanish language group',
       street: '2429 Ryder Avenue',
@@ -46,6 +52,7 @@ export function generateEvents() {
     },
     {
       date: getFutureDate(4),
+      id: 6,
       location: 'Culinary Campus',
       name: 'French cooking class',
       street: '987 Argonne Street',
@@ -53,6 +60,7 @@ export function generateEvents() {
     },
     {
       date: getFutureDate(4),
+      id: 7,
       location: 'Starbucks',
       name: 'Code & Coffee',
       street: '291 Quincy Street',
@@ -60,6 +68,7 @@ export function generateEvents() {
     },
     {
       date: getFutureDate(6),
+      id: 8,
       location: 'Museum of Art',
       name: 'Paint workshop',
       street: '667 Skips Lane',
@@ -67,6 +76,7 @@ export function generateEvents() {
     },
     {
       date: getFutureDate(8),
+      id: 9,
       location: 'University of Electrodynamics',
       name: 'What is electricity? – Lecture',
       street: '2231 Emerson Road',
@@ -74,6 +84,7 @@ export function generateEvents() {
     },
     {
       date: getFutureDate(9),
+      id: 10,
       location: 'Food Court',
       name: 'Lunch meetup – Street food',
       street: '3595 Cambridge Place',
@@ -81,6 +92,7 @@ export function generateEvents() {
     },
     {
       date: getFutureDate(9),
+      id: 11,
       location: 'Concert Hall',
       name: 'Orchestra',
       street: '4742 Melody Lane',
