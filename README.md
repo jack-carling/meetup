@@ -6,8 +6,6 @@ School assignment
 
 Create a meetup app in Vue and deploy to Heroku in a Docker-container.
 
-[Link to Heroku](https://meetup-jack.herokuapp.com/)
-
 Functionality
 
 - View upcoming events
