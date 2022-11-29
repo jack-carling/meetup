@@ -20,7 +20,7 @@ Functionality
 - Commenting and voting is only possible once
 - Rating is saved in local storage
 - Was build using Test Driven Development (TDD)
-- Automatic deployments only if CI/CD passes, see [GitHub Actions](https://github.com/jack-carling/meetup/actions)
+- Automatic deployments only if CI/CD passes
 
 ## Screenshots
 
